@@ -1,0 +1,23 @@
+{
+  "name": "joukowsky-airfoil",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "20.12.2",
+    "npm": "10.5.1"
+  },
+  "author": "uya",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "4.17.1",
+    "log4js": "6.3.0"
+  },
+  "description": "",
+  "devDependencies": {
+    "eslint": "7.25.0"
+  }
+}
