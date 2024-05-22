@@ -134,8 +134,15 @@
 				</table>
 				<br>
 				<div style="text-align:right" width="100%">
-					<a class="btn btn-outline-success my-2 my-sm-0 mr-2" onclick="exportModel('sim', 'simulate', 400, 300)">Download .stl & .csv</a>
-					<a class="btn btn-outline-success my-2 my-sm-0 mr-2" onclick="resetModel('sim', 'simulate', 400, 300)">Reset</a>
+					<!-- <form action="/" method="post"> -->
+						<!-- https://zenn.dev/wkb/books/node-tutorial/viewer/todo_03 -->
+						
+						<!-- <input type="submit" id="export-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Download .stl & .csv" /> -->
+						<!-- <input type="submit" id="reset-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Reset" /> -->
+					<!-- </form> -->
+					
+					<input type="button" id="export-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Download .stl & .csv" />
+					<input type="button" id="reset-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Reset" />
 				</div>
 				<br>
 			</form>
@@ -152,6 +159,157 @@
 	</div>
 	
 	<script>
+		//==================================================================
+		function updateModel(form_id, plot_id, width, height)
+		{
+			var forms	= document.getElementById(form_id);
+			var alpha	= parseFloat(forms.alpha_rng.value);
+			var xi0		= parseFloat(forms.xi0_rng.value);
+			var eta0	= parseFloat(forms.eta0_rng.value);
+			var wingl	= parseFloat(forms.wingl_rng.value);
+			//-------------------------------------------------
+			var c = wingl/4;
+			var r = Math.sqrt( Math.pow(c-xi0, 2) + Math.pow(eta0, 2));
+			//-------------------------------------------------
+			document.getElementById("Xmin").innerHTML = 'Xmin:	' + round(Xrange_min( alpha, xi0, eta0, wingl, c, r ), 3);
+			document.getElementById("Xmax").innerHTML = 'Xmax:	' + round(Xrange_max( alpha, xi0, eta0, wingl, c, r ), 3);
+			document.getElementById("Ymin").innerHTML = 'Ymin:	' + round(Yrange_min( alpha, xi0, eta0, wingl, c, r ), 3);
+			document.getElementById("Ymax").innerHTML = 'Ymax:	' + round(Yrange_max( alpha, xi0, eta0, wingl, c, r ), 3);
+			//-------------------------------------------------
+			X_min	= -0.7;
+			X_max	= 0.7;
+			X_step	= 0.1;
+			Y_min	= -0.5;
+			Y_max	= 0.5;
+			Y_step	= 0.1;
+			
+			gopen(plot_id, 
+					X_min, X_max, X_step,
+					Y_min, Y_max, Y_step, 
+					width, height, 25, 25, 40, 50);
+			gclose();
+			//-------------------------------------------------
+			var x = realX( alpha, xi0, eta0, wingl, c, r, 0);
+			var y = realY_fromX( alpha, xi0, eta0, wingl, c, r, x, 0);
+			
+			for (var i = 1; i < 360; ++i) {
+				//-------------------------------------------------
+				x = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+				y = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+				if(y == 999999) continue;
+				//-------------------------------------------------
+				gplot(x, y);
+				//-------------------------------------------------
+			}
+			//-------------------------------------------------
+		};
+		//==================================================================
+		function exportModel(form_id, plot_id, width, height)
+		{
+			var forms	= document.getElementById(form_id);
+			var alpha	= parseFloat(forms.alpha_rng.value);
+			var xi0		= parseFloat(forms.xi0_rng.value);
+			var eta0	= parseFloat(forms.eta0_rng.value);
+			var wingl	= parseFloat(forms.wingl_rng.value);
+			//-------------------------------------------------
+			var c = wingl/4;
+			var r = Math.sqrt( Math.pow(c-xi0, 2) + Math.pow(eta0, 2));
+			//-------------------------------------------------
+			X_min	= -0.7;
+			X_max	= 0.7;
+			X_step	= 0.1;
+			Y_min	= -0.5;
+			Y_max	= 0.5;
+			Y_step	= 0.1;
+			//-------------------------------------------------
+			var strStl = [];
+			strStl.push('solid 2D Sheet on Z=0\n');
+			//-------------------------------------------------
+			var x_cent0 = realX( alpha, xi0, eta0, wingl, c, r,	90);
+			var x_cent1 = realX( alpha, xi0, eta0, wingl, c, r, 270);
+			var y_cent0 = realY_fromX( alpha, xi0, eta0, wingl, c, r, x_cent0, 0);
+			var y_cent1 = realY_fromX( alpha, xi0, eta0, wingl, c, r, x_cent1, 1);
+			
+			var pline_stlcent;
+			pline_stlcent = 'vertex ' + (x_cent0 * 0.5 + x_cent1 * 0.5) 
+								+ ' ' + (y_cent0 * 0.5 + y_cent1 * 0.5) + ' 0\n';
+			//-------------------------------------------------
+			var x = realX( alpha, xi0, eta0, wingl, c, r, 0);
+			var y = realY_fromX( alpha, xi0, eta0, wingl, c, r, x, 0);
+			
+			var pline_1st;
+			pline_1st = 'vertex ' + x + ' ' + y + ' 0\n';
+			
+			var pline_prev;
+			pline_prev = pline_1st
+			
+			var arr = [];
+			for (var i = 1; i < 360; ++i) {
+				//-------------------------------------------------
+				x = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+				y = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+				if(y == 999999) continue;
+				//-------------------------------------------------
+				strStl.push('facet normal -0 0 -1\n');
+				strStl.push('outer loop\n');
+				strStl.push(pline_stlcent);
+				strStl.push(pline_prev);
+				strStl.push('vertex ' + x + ' ' + y + ' 0\n');
+				strStl.push('endloop\n');
+				strStl.push('endfacet\n');
+				
+				pline_prev = 'vertex ' + x + ' ' + y + ' 0\n';
+				//-------------------------------------------------
+				arr.push( {x:x, y:y});
+				//-------------------------------------------------
+			}
+			//-------------------------------------------------
+			strStl.push('facet normal -0 0 -1\n');
+			strStl.push('outer loop\n');
+			strStl.push(pline_stlcent);
+			strStl.push(pline_prev);
+			strStl.push(pline_1st);
+			strStl.push('endloop\n');
+			strStl.push('endfacet\n');
+			
+			strStl.push('endsolid 2D Sheet\n');
+			strStl.push('\n');
+			download(strStl, 'Joukowsky-airfoil.stl');
+			//-------------------------------------------------
+			(new CSV(arr)).save('Joukowsky-airfoil.csv');
+			//-------------------------------------------------
+			const anchor = document.createElement("a");
+			anchor.href = './app/PyVista/Joukowsky-airfoil.html';
+			anchor.download = 'Joukowsky-airfoil.html';
+			document.body.appendChild(anchor);
+			anchor.click();
+			document.body.removeChild(anchor);
+			//-------------------------------------------------
+			updateModel(form_id, plot_id, width, height);
+		};
+		//==================================================================
+		function resetModel(form_id, plot_id, width, height)
+		{
+			let alpha_default =  2.5;
+			let xi0_default = 0.02;
+			let eta0_default = 0.05;
+			let wingl_default = 1.0;
+			
+			document.getElementById('sim').alpha_num.value = alpha_default;
+			document.getElementById('sim').alpha_rng.value = alpha_default;
+			
+			document.getElementById('sim').xi0_num.value = xi0_default;
+			document.getElementById('sim').xi0_rng.value = xi0_default;
+			
+			document.getElementById('sim').eta0_num.value = eta0_default;
+			document.getElementById('sim').eta0_rng.value = eta0_default;
+			
+			document.getElementById('sim').wingl_num.value = wingl_default;
+			document.getElementById('sim').wingl_rng.value = wingl_default;
+			
+			updateModel(form_id, plot_id, width, height);
+		};
+		//==================================================================
 		// ------------------------------------------------------
 		//Hamburger menu
 		const mobileMenu = document.getElementById("mobile-menu");
@@ -199,7 +357,7 @@
 		}
 		// ------------------------------------------------------
 		// Reset
-		window.addEventListener("load", function () {
+		window.addEventListener('load', () => {
 			updateModel('sim', 'simulate', 400, 300);
 		});
 		// ------------------------------------------------------
@@ -371,6 +529,37 @@
 		wingl_num.onblur = (()=>{
 			setAllRangesOff();
 		});
+		// ------------------------------------------------------
+		let btn_dlStl = document.getElementById('export-model');
+		btn_dlStl.addEventListener('click', () => {
+			exportModel('sim', 'simulate', 400, 300);
+		});
+		// ------------------------------------------------------
+		let btn_reset = document.getElementById('reset-model');
+		btn_reset.addEventListener('click', () => {
+			resetModel('sim', 'simulate', 400, 300);
+		});
+		// ------------------------------------------------------
+		// ------------------------------------------------------
+		// Save .stl
+		
+		// https://zenn.dev/daiyaone/articles/5da30a5b248351#:~:text=console.log(data)%3B%0A%7D)%3B-,%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%89%8A%E9%99%A4,-fs%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92
+		<%-
+		fs.writeFile('./app/PyVista/Joukowsky-airfoil.txt', 'Joukowsky-airfoil.stl !', (err) => {
+			if (err) {
+				console.error(err);
+				return;
+			}
+			//console.log(" ## './app/PyVista/Joukowsky-airfoil.stl' saved.");
+		});
+		%>
+		// ------------------------------------------------------
+		// .stl -> .html
+		//
+		// https://t-salad.com/node-exe/
+		//<%-
+		//subproc.execSync('py ./app/PyVista/stl2html.py  ./Joukowsky-airfoil.stl');
+		//%>
 		// ------------------------------------------------------
 	</script>
 	<script src="./app/Joukowsky-airfoil.js" type="text/javascript"></script>
