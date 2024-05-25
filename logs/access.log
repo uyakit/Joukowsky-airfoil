@@ -111,3 +111,7 @@
 [2024-05-25T15:38:03.788] [INFO] access - ::1 - - "POST / HTTP/1.1" 200 947840 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 [2024-05-25T15:38:42.667] [INFO] access - ::1 - - "GET / HTTP/1.1" 200 183704 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 [2024-05-25T15:39:10.285] [INFO] access - ::1 - - "POST / HTTP/1.1" 200 947808 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+[2024-05-25T16:53:24.191] [INFO] access - ::1 - - "GET / HTTP/1.1" 200 183704 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+[2024-05-25T16:53:36.429] [ERROR] access - ::1 - - "POST / HTTP/1.1" 500 1504 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+[2024-05-25T16:55:00.788] [WARN] access - ::1 - - "GET / HTTP/1.1" 304 - "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+[2024-05-25T16:55:15.197] [INFO] access - ::1 - - "POST / HTTP/1.1" 200 947872 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"

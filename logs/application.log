@@ -51,3 +51,9 @@ C:\Users\uyasp\AppData\Local\Programs\Python\Python311\python.exe: can't open fi
 [2024-05-25T15:35:20.903] [INFO] application - Application listening at :3000
 [2024-05-25T15:37:46.347] [INFO] application - Application listening at :3000
 [2024-05-25T15:38:35.254] [INFO] application - Application listening at :3000
+[2024-05-25T16:53:17.632] [INFO] application - Application listening at :3000
+[2024-05-25T16:53:36.420] [ERROR] application - Command failed: ./app/PyVista/stl2html@WebApps.cmd
+'.' �́A�����R�}���h�܂��͊O���R�}���h�A
+����\�ȃv���O�����܂��̓o�b�` �t�@�C���Ƃ��ĔF������Ă��܂���B
+
+[2024-05-25T16:54:40.425] [INFO] application - Application listening at :3000
