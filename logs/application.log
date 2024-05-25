@@ -57,3 +57,15 @@ C:\Users\uyasp\AppData\Local\Programs\Python\Python311\python.exe: can't open fi
 ����\�ȃv���O�����܂��̓o�b�` �t�@�C���Ƃ��ĔF������Ă��܂���B
 
 [2024-05-25T16:54:40.425] [INFO] application - Application listening at :3000
+[2024-05-25T17:03:11.469] [INFO] application - Application listening at :3000
+[2024-05-25T17:03:26.069] [ERROR] application - Command failed: C:homepython3111x64python.exe  ./app/PyVista/stl2html@WebApps.py  ./Joukowsky-airfoil.stl
+'C:homepython3111x64python.exe' �́A�����R�}���h�܂��͊O���R�}���h�A
+����\�ȃv���O�����܂��̓o�b�` �t�@�C���Ƃ��ĔF������Ă��܂���B
+
+[2024-05-25T17:04:02.905] [INFO] application - Application listening at :3000
+[2024-05-25T17:46:32.266] [INFO] application - Application listening at :3000
+[2024-05-25T17:46:49.793] [ERROR] application - Command failed: C:homepython3111x64python.exe  ./app/PyVista/stl2html@WebApps.py  ./Joukowsky-airfoil.stl
+'C:homepython3111x64python.exe' �́A�����R�}���h�܂��͊O���R�}���h�A
+����\�ȃv���O�����܂��̓o�b�` �t�@�C���Ƃ��ĔF������Ă��܂���B
+
+[2024-05-25T17:47:36.004] [INFO] application - Application listening at :3000
