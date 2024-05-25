@@ -84,21 +84,21 @@ function Yrange_max( alpha, xi0, eta0, wingl, c, r ){
 }
 //==================================================================
 function realX( alpha, xi0, eta0, wingl, c, r, theta){
-	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let xi =   xi0 + r * Math.cos( theta * Math.PI/180 );
 	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x0 =  xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	let x = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
-	let y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
+	let x  =  x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	let y  = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
 	return x;
 }
 //==================================================================
 function realY( alpha, xi0, eta0, wingl, c, r, theta){
-	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let xi =   xi0 + r * Math.cos( theta * Math.PI/180 );
 	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x0 =  xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	let x  = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	let x  =  x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
 	let y  = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
 	return y;
 }
@@ -123,9 +123,9 @@ function realY_fromX( alpha, xi0, eta0, wingl, c, r, x, upper){
 	       + (x - realX( alpha, xi0, eta0, wingl, c, r, theta))/delx
 	       * (upper == 1 ? (theta + 1.0) : (theta - 1.0));
 	
-	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let xi =   xi0 + r * Math.cos( theta * Math.PI/180 );
 	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x0 =  xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 	x =  x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
 	y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
@@ -148,7 +148,7 @@ function round( number, precision )
 	return shift(Math.round(shift(number, precision, false)), precision, true);
 }
 //==================================================================
-download = function (data, fileName){
+dlBlob = function (data, fileName){
 	let blob = new Blob(data, {type: "text/plain"});
 	let a = document.createElement("a");
 	a.href = URL.createObjectURL(blob);

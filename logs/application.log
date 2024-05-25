@@ -18,3 +18,36 @@
 [2024-05-25T10:05:58.634] [INFO] application - Application listening at :3000
 [2024-05-25T10:08:30.621] [INFO] application - Application listening at :3000
 [2024-05-25T10:16:45.063] [INFO] application - Application listening at :3000
+[2024-05-25T10:22:42.000] [INFO] application - Application listening at :3000
+[2024-05-25T11:55:02.570] [INFO] application - Application listening at :3000
+[2024-05-25T11:56:02.347] [INFO] application - Application listening at :3000
+[2024-05-25T11:56:05.332] [ERROR] application - Command failed: py ./app/PyVista/stl2html.py  ./Joukowsky-airfoil.stl
+C:\Users\uyasp\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\uyasp\\Desktop\\Node.js\\Express.js\\Joukowsky-airfoil\\app\\PyVista\\stl2html.py': [Errno 2] No such file or directory
+
+[2024-05-25T11:56:13.791] [ERROR] application - Command failed: py ./app/PyVista/stl2html.py  ./Joukowsky-airfoil.stl
+C:\Users\uyasp\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\uyasp\\Desktop\\Node.js\\Express.js\\Joukowsky-airfoil\\app\\PyVista\\stl2html.py': [Errno 2] No such file or directory
+
+[2024-05-25T11:57:07.192] [INFO] application - Application listening at :3000
+[2024-05-25T11:59:19.023] [INFO] application - Application listening at :3000
+[2024-05-25T11:59:54.145] [INFO] application - Application listening at :3000
+[2024-05-25T12:00:52.167] [INFO] application - Application listening at :3000
+[2024-05-25T12:01:35.356] [INFO] application - Application listening at :3000
+[2024-05-25T12:14:37.417] [INFO] application - Application listening at :3000
+[2024-05-25T12:14:51.876] [ERROR] application - Can't set headers after they are sent.
+[2024-05-25T12:16:27.599] [INFO] application - Application listening at :3000
+[2024-05-25T12:20:48.260] [INFO] application - Application listening at :3000
+[2024-05-25T12:21:12.063] [ERROR] application - Cannot set headers after they are sent to the client
+[2024-05-25T12:23:37.561] [INFO] application - Application listening at :3000
+[2024-05-25T14:31:43.560] [INFO] application - Application listening at :3000
+[2024-05-25T15:00:06.409] [INFO] application - Application listening at :3000
+[2024-05-25T15:07:56.934] [INFO] application - Application listening at :3000
+[2024-05-25T15:10:01.058] [INFO] application - Application listening at :3000
+[2024-05-25T15:13:12.805] [INFO] application - Application listening at :3000
+[2024-05-25T15:15:20.190] [ERROR] application - as is not defined
+[2024-05-25T15:16:32.335] [INFO] application - Application listening at :3000
+[2024-05-25T15:16:41.099] [ERROR] application - ENOENT: no such file or directory, open 'C:\Users\uyasp\Desktop\Node.js\Express.js\Joukowsky-airfoil\Joukowsky-airfoil.html'
+[2024-05-25T15:17:22.833] [ERROR] application - ENOENT: no such file or directory, open 'C:\Users\uyasp\Desktop\Node.js\Express.js\Joukowsky-airfoil\Joukowsky-airfoil.html'
+[2024-05-25T15:19:25.130] [INFO] application - Application listening at :3000
+[2024-05-25T15:35:20.903] [INFO] application - Application listening at :3000
+[2024-05-25T15:37:46.347] [INFO] application - Application listening at :3000
+[2024-05-25T15:38:35.254] [INFO] application - Application listening at :3000

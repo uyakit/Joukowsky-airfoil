@@ -12,23 +12,23 @@ const subproc = require('child_process');
 
 //==================================================================
 function realX( alpha, xi0, eta0, wingl, c, r, theta){
-	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let xi =   xi0 + r * Math.cos( theta * Math.PI/180 );
 	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x0 =  xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	let x  = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
-	let y  = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
+	let x =  x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	let y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
 	
 	return x;
 }
 //==================================================================
 function realY( alpha, xi0, eta0, wingl, c, r, theta){
-	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let xi =   xi0 + r * Math.cos( theta * Math.PI/180 );
 	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x0 =  xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	let x  = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
-	let y  = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
+	let x =  x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	let y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
 	
 	return y;
 }
@@ -54,9 +54,9 @@ function realY_fromX( alpha, xi0, eta0, wingl, c, r, x, upper){
 			       + (x - realX( alpha, xi0, eta0, wingl, c, r, theta))/delx
 			       * (upper == 1 ? (theta + 1.0) : (theta - 1.0));
 			
-			let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+			let xi =   xi0 + r * Math.cos( theta * Math.PI/180 );
 			let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-			let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+			let x0 =  xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 			let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
 			x  = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
 			y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
@@ -67,7 +67,7 @@ function realY_fromX( alpha, xi0, eta0, wingl, c, r, x, upper){
 	return y;
 }
 //==================================================================
-function exportModel(res, alpha, xi0, eta0, wingl)
+function exec_stl2html(alpha, xi0, eta0, wingl)
 {
 	//-------------------------------------------------
 	let c = wingl/4;
@@ -130,34 +130,14 @@ function exportModel(res, alpha, xi0, eta0, wingl)
 	
 	// https://zenn.dev/daiyaone/articles/5da30a5b248351#:~:text=console.log(data)%3B%0A%7D)%3B-,%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%89%8A%E9%99%A4,-fs%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92
 	fs.writeFileSync('./app/PyVista/Joukowsky-airfoil.stl', arrStl.join("\n"));
-	
-	res.download('./app/PyVista/Joukowsky-airfoil.stl', 'Joukowsky-airfoil.stl');
 	// ------------------------------------------------------
 	// .stl -> .html
 	//
 	// https://t-salad.com/node-exe/
+	// subproc.execSync('py ./app/PyVista/stl2html@WebApps.py  ./Joukowsky-airfoil.stl');
+	subproc.execSync('C:\home\python3111x64\python.exe C:\home\site\wwwroot\app\PyVista\stl2html@WebApps.py C:\home\site\wwwroot\app\PyVista\Joukowsky-airfoil.stl');
 	
-	subproc.execSync('py ./app/PyVista/stl2html.py  ./Joukowsky-airfoil.stl');
-	
-	res.download('./app/PyVista/Joukowsky-airfoil.html', 'Joukowsky-airfoil.html');
 	// ------------------------------------------------------
-	
-	
-	
-	
-	
-	
-	
-	// -------------------------------------------------
-	// (new CSV(arrCsv)).save('Joukowsky-airfoil.csv');
-	// -------------------------------------------------
-	// const anchor = document.createElement("a");
-	// anchor.href = './app/PyVista/Joukowsky-airfoil.html';
-	// anchor.download = 'Joukowsky-airfoil.html';
-	// document.body.appendChild(anchor);
-	// anchor.click();
-	// document.body.removeChild(anchor);
-	//-------------------------------------- */
 };
 //==================================================================
 
@@ -178,10 +158,16 @@ router.post("/", (req, res) => {
 	val_eta0 = parseFloat(req.body.eta0_num);
 	val_wingl = parseFloat(req.body.wingl_num);
 	
-	exportModel(res, val_alpha, val_xi0, val_eta0, val_wingl);
+	exec_stl2html(val_alpha, val_xi0, val_eta0, val_wingl);
 	
-	// res.send();
-	res.redirect('/');
+	// https://qiita.com/riversun/items/7f720ae472289a281e3d
+	res.set(
+		'Content-Disposition',
+		'attachment; filename=Joukowsky-airfoil.html'
+	);
+	res.send(fs.readFileSync('./app/PyVista/Joukowsky-airfoil.html'));
+	
+	// res.redirect('/');
 });
 
 module.exports = router;

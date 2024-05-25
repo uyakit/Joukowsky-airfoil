@@ -13,6 +13,8 @@ C:\home\python3111x64\python.exe -m pip install pyvista[all,trame]
 C:\home\python3111x64\python.exe -m pip uninstall vtk -y
 C:\home\python3111x64\python.exe -m pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
 C:\home\python3111x64\python.exe -m pip install vtk
+C:\home\python3111x64\python.exe -m pip install tkinter
 C:\home\python3111x64\python.exe -m pip install matplotlib
 
 C:\home\python3111x64\python.exe -m pip list
+
