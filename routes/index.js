@@ -135,7 +135,7 @@ function exec_stl2html(alpha, xi0, eta0, wingl)
 	//
 	// https://t-salad.com/node-exe/
 	// subproc.execSync('py ./app/PyVista/stl2html@WebApps.py  ./Joukowsky-airfoil.stl');
-	subproc.execSync('C:\home\python3111x64\python.exe C:\home\site\wwwroot\app\PyVista\stl2html@WebApps.py C:\home\site\wwwroot\app\PyVista\Joukowsky-airfoil.stl');
+	subproc.execSync('C:\home\python3111x64\python.exe ./app/PyVista/stl2html@WebApps.py ./Joukowsky-airfoil.stl');
 	
 	// ------------------------------------------------------
 };
