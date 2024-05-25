@@ -6,14 +6,11 @@
 
 
 //==================================================================
-var X_min, X_max, X_step;
-var Y_min, Y_max, Y_step;
-//==================================================================
 function ang_leadingEdge( alpha, xi0, eta0, wingl, c, r ){
 	
-	var x_posi;
-	var x_nega;
-	for (var i = 1; i < 360; ++i) {
+	let x_posi;
+	let x_nega;
+	for (let i = 1; i < 360; ++i) {
 		//-------------------------------------------------
 		x_posi = realX( alpha, xi0, eta0, wingl, c, r, (i - 1) * 1.0);
 		x_nega = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
@@ -28,10 +25,10 @@ function ang_leadingEdge( alpha, xi0, eta0, wingl, c, r ){
 //==================================================================
 function Xrange_min( alpha, xi0, eta0, wingl, c, r ){
 	
-	var x_min = 999999;
-	for (var i = 0; i < 360; ++i) {
+	let x_min = 999999;
+	for (let i = 0; i < 360; ++i) {
 		//-------------------------------------------------
-		var x_cand = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+		let x_cand = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
 		//-------------------------------------------------
 		if (x_cand <= x_min) {
 			x_min = x_cand;
@@ -43,10 +40,10 @@ function Xrange_min( alpha, xi0, eta0, wingl, c, r ){
 //==================================================================
 function Xrange_max( alpha, xi0, eta0, wingl, c, r ){
 	
-	var x_max = - 999999;
-	for (var i = 0; i < 360; ++i) {
+	let x_max = - 999999;
+	for (let i = 0; i < 360; ++i) {
 		//-------------------------------------------------
-		var x_cand = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+		let x_cand = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
 		//-------------------------------------------------
 		if (x_cand >= x_max) {
 			x_max = x_cand;
@@ -58,10 +55,10 @@ function Xrange_max( alpha, xi0, eta0, wingl, c, r ){
 //==================================================================
 function Yrange_min( alpha, xi0, eta0, wingl, c, r ){
 	
-	var y_min = 999999;
-	for (var i = 0; i < 360; ++i) {
+	let y_min = 999999;
+	for (let i = 0; i < 360; ++i) {
 		//-------------------------------------------------
-		var y_cand = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+		let y_cand = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
 		//-------------------------------------------------
 		if (y_cand <= y_min) {
 			y_min = y_cand;
@@ -73,10 +70,10 @@ function Yrange_min( alpha, xi0, eta0, wingl, c, r ){
 //==================================================================
 function Yrange_max( alpha, xi0, eta0, wingl, c, r ){
 	
-	var y_max = - 999999;
-	for (var i = 0; i < 360; ++i) {
+	let y_max = - 999999;
+	for (let i = 0; i < 360; ++i) {
 		//-------------------------------------------------
-		var y_cand = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
+		let y_cand = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
 		//-------------------------------------------------
 		if (y_cand >= y_max) {
 			y_max = y_cand;
@@ -87,73 +84,73 @@ function Yrange_max( alpha, xi0, eta0, wingl, c, r ){
 }
 //==================================================================
 function realX( alpha, xi0, eta0, wingl, c, r, theta){
-	var xi	= xi0	+ r * Math.cos( theta * Math.PI/180 );
-	var eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	var x0	= xi	* ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	var y0	= eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	var x	 =	x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
-	var y	 = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
+	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
+	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	let y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
 	return x;
 }
 //==================================================================
 function realY( alpha, xi0, eta0, wingl, c, r, theta){
-	var xi	= xi0	+ r * Math.cos( theta * Math.PI/180 );
-	var eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-	var x0	= xi	* ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	var y0	= eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-	var x	 =	x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
-	var y	 = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
+	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
+	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let x  = x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	let y  = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
 	return y;
 }
 //==================================================================
 function realY_fromX( alpha, xi0, eta0, wingl, c, r, x, upper){
 	
-	var theta;
-	var y = 999999;
+	let theta;
+	let y = 999999;
 	
-	for (var i = 0; i < 360; ++i) {
+	for (let i = 0; i < 360; ++i) {
 		if (upper==1){
-			theta = 360 - i * 1.0;
-		} else {
-			theta = i * 1.0;
-		}
-		if (realX( alpha, xi0, eta0, wingl, c, r, theta) < x){ //※upperに拠らず、常にx:正→負
-			var delx = realX( alpha, xi0, eta0, wingl, c, r, ( upper == 1 ? (theta + 1.0) : (theta - 1.0)))
-							 - realX( alpha, xi0, eta0, wingl, c, r, theta);
-			
-			theta =	(realX( alpha, xi0, eta0, wingl, c, r, ( upper == 1 ? (theta + 1.0) : (theta - 1.0))) - x)/delx
-								* (theta)
-						 + (x -	realX( alpha, xi0, eta0, wingl, c, r, theta))/delx
-								* (upper == 1 ? (theta + 1.0) : (theta - 1.0));
-			
-			var xi	= xi0	+ r * Math.cos( theta * Math.PI/180 );
-			var eta = eta0 + r * Math.sin( theta * Math.PI/180 );
-			var x0	= xi	* ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-			var y0	= eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
-			var x	 =	x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
-			y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
-			
-			break;
-		}
+		theta = 360 - i * 1.0;
+	} else {
+		theta = i * 1.0;
+	}
+	if (realX( alpha, xi0, eta0, wingl, c, r, theta) < x){ //※upperに拠らず、常にx:正→負
+	let delx = realX( alpha, xi0, eta0, wingl, c, r, ( upper == 1 ? (theta + 1.0) : (theta - 1.0)))
+	         - realX( alpha, xi0, eta0, wingl, c, r, theta);
+	
+	theta = (realX( alpha, xi0, eta0, wingl, c, r, ( upper == 1 ? (theta + 1.0) : (theta - 1.0))) - x)/delx
+	       * (theta)
+	       + (x - realX( alpha, xi0, eta0, wingl, c, r, theta))/delx
+	       * (upper == 1 ? (theta + 1.0) : (theta - 1.0));
+	
+	let xi = xi0 + r * Math.cos( theta * Math.PI/180 );
+	let eta = eta0 + r * Math.sin( theta * Math.PI/180 );
+	let x0 = xi * ( 1 + Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	let y0 = eta * ( 1 - Math.pow(c, 2)/( Math.pow(xi, 2) + Math.pow(eta, 2) ));
+	x =  x0 * Math.cos( alpha * Math.PI/180 ) + y0 * Math.sin( alpha * Math.PI/180 );
+	y = -x0 * Math.sin( alpha * Math.PI/180 ) + y0 * Math.cos( alpha * Math.PI/180 );
+	
+	break;
+	}
 	}
 	return y;
 }
 //==================================================================
 function round( number, precision )
 {
-	var shift = function (number, precision, reverseShift) {
-	if (reverseShift) {
-		precision = -precision;
-	}
-	var numArray = ("" + number).split("e");
-	return +(numArray[0] + "e" + (numArray[1] ? (+numArray[1] + precision) : precision));
+	let shift = function (number, precision, reverseShift) {
+		if (reverseShift) {
+			precision = -precision;
+		}
+		let numArray = ("" + number).split("e");
+		return +(numArray[0] + "e" + (numArray[1] ? (+numArray[1] + precision) : precision));
 	};
 	return shift(Math.round(shift(number, precision, false)), precision, true);
 }
 //==================================================================
 download = function (data, fileName){
-	var blob = new Blob(data, {type: "text/plain"});
-	var a = document.createElement("a");
+	let blob = new Blob(data, {type: "text/plain"});
+	let a = document.createElement("a");
 	a.href = URL.createObjectURL(blob);
 	a.target = '_blank';
 	a.download = fileName;
@@ -169,13 +166,13 @@ class CSV {
 		
 		if (CSV.isArray(data)) {
 			if (0 == data.length) {
-			this.dataType = this.ARRAY
+				this.dataType = this.ARRAY
 			} else if (CSV.isObject(data[0])) {
-			this.dataType = this.OBJECT
+				this.dataType = this.OBJECT
 			} else if (CSV.isArray(data[0])) {
-			this.dataType = this.ARRAY
+				this.dataType = this.ARRAY
 			} else {
-			throw Error('Error: 未対応のデータ型です')
+				throw Error('Error: 未対応のデータ型です')
 			}
 		} else {
 			throw Error('Error: 未対応のデータ型です')
@@ -195,7 +192,7 @@ class CSV {
 			const keys = this.keys || Array.from(this.extractKeys(this.data))
 			
 			const arrayData = this.data.map((record) => (
-			keys.map((key) => record[key])
+				keys.map((key) => record[key])
 			))
 			
 			console.log([].concat([keys], arrayData))
@@ -220,7 +217,7 @@ class CSV {
 		const url = window.URL || window.webkitURL;
 		const blobURL = url.createObjectURL(blob);
 		
-		var a = document.createElement('a');
+		let a = document.createElement('a');
 		a.download = decodeURI(filename);
 		a.href = blobURL;
 		a.type = 'text/csv';

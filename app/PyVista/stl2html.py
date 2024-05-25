@@ -2,55 +2,28 @@
 
 
 #######################################################################################
-# Nuitka memo
-# https://www.idnet.co.jp/column/page_245.html
-# https://blog.tsukumijima.net/article/python-nuitka-usage/#toc2
-#
-#--- @CMD -------------------------------------
-# cd (#Directory to export the result .exe)
-# pipenv shell
+# Installation
 #
 # https://qiita.com/natsuriver/items/72a5e180c1a65a8c8e92#linux-%E3%81%AE%E5%A0%B4%E5%90%88
+
 # py -m pip install pyvista[all,trame]
 # py -m pip uninstall vtk -y
 # py -m pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
 # py -m pip install vtk
-#
+# py -m pip install matplotlib
+
 # py -m pip list
-#
-#######################################################################################
-# Pyinstaller
-
-# https://qiita.com/nal_dal_dere/items/95e173068af399e61981
-
-# pyinstaller stl2html.py --onefile --clean
 
 #######################################################################################
-# pipenv
-
-#https://qiita.com/taka7n/items/c80daefe9e722f11dbe9#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%90%AB%E3%82%81%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B
-#
-# nuitka --mingw64 --include-data-file="./venv/Lib/site-packages/espnet/version.txt=./espnet/" stl2html.py
-
-# https://qiita.com/taka7n/items/c80daefe9e722f11dbe9#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%81%AB%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E5%90%AB%E3%82%81%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B
-
-#
-#######################################################################################
-# * pip-licenses *
-# https://dev.classmethod.jp/articles/python-pipdeptree_licenses/#:~:text=python%2Dlicenses.csv%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E5%87%BA%E5%8A%9B
-# (#Check) py -m pip install pipdeptree pip-licenses
-# (#Check) pip-licenses --with-urls --format=csv --with-description --output-file=python-licenses.csv
-#######################################################################################
-
 
 
 import io
 import os
 import sys
 
-# from tkinter import Tk
-# from tkinter import messagebox
-# from tkinter import TclError
+from tkinter import Tk
+from tkinter import messagebox
+from tkinter import TclError
 
 import pyvista as pv
 
@@ -60,23 +33,11 @@ pathd_me = os.path.abspath(os.path.dirname(path_me))
 basename_me = os.path.splitext(os.path.basename(path_me))[0]
 os.chdir(pathd_me)
 
-# if len(sys.argv) != 2:
-    # root = Tk()
-    # root.withdraw()
-    # try:
-        # root.after(5000, root.destroy)  # in milliseconds 
-        # messagebox.Message(title='Error', message='Specify just one model file ( .stl ) as argument !', icon='error', master=root).show()
-    # except TclError:
-        # pass
-    # sys.exit()
-
 path_3d = os.path.abspath(sys.argv[1])
 pathd_3d = os.path.abspath(os.path.dirname(path_3d))
 basename_3d = os.path.splitext(os.path.basename(path_3d))[0]
 
 #Parameters
-res_theta = 10
-res_phi = 10
 color_pcl = '#E0C89A'
 color_grid = '#34C363'
 color_x = '#DF143F'
@@ -87,35 +48,36 @@ color_z = '#2468D0'
 def main():
     #-------------------------------------------------------------------------
     #Count Arguments
-    # if len(sys.argv) != 2:
-        # root = Tk()
-        # root.withdraw()
-        # try:
-            # root.after(5000, root.destroy)  # in milliseconds 
-            # messagebox.Message(title='Error', message='Specify just one stl file (.stl) as argument !', icon='error', master=root).show()
-        # except TclError:
-            # pass
-        # sys.exit()
+    if len(sys.argv) != 2:
+        root = Tk()
+        root.withdraw()
+        try:
+            root.after(5000, root.destroy)  # in milliseconds 
+            messagebox.Message(title='Error', message='Specify just one stl file (.stl) as argument !', icon='error', master=root).show()
+        except TclError:
+            pass
+        sys.exit()
     
     path_3d = os.path.abspath(sys.argv[1])
     pathd_3d = os.path.abspath(os.path.dirname(path_3d))
     basename_3d = os.path.splitext(os.path.basename(path_3d))[0]
     
-    #Filter by Extention
-    # if os.path.splitext(path_3d)[1] != '.stl':
-        # root = Tk()
-        # root.withdraw()
-        # try:
-            # root.after(5000, root.destroy)  # in milliseconds 
-            # messagebox.Message(title='Error', message='Specify just one stl file (.stl) as argument !', icon='error', master=root).show()
-        # except TclError:
-            # pass
-        # sys.exit()
+    # Filter by Extention
+    if os.path.splitext(path_3d)[1] != '.stl':
+        root = Tk()
+        root.withdraw()
+        try:
+            root.after(5000, root.destroy)  # in milliseconds 
+            messagebox.Message(title='Error', message='Specify just one stl file (.stl) as argument !', icon='error', master=root).show()
+        except TclError:
+            pass
+        sys.exit()
     #-------------------------------------------------------------------------
     #Launch PyVista
     pl = launch_pyvista()
     #-------------------------------------------------------------------------
     #Load mesh
+    
     mesh = pv.read(path_3d)
     # https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.Plotter.add_mesh.html#pyvista.Plotter.add_mesh
     pl.add_mesh(

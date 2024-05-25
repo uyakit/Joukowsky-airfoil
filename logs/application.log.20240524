@@ -1,0 +1,30 @@
+[2024-05-24T16:52:43.678] [INFO] application - Application listening at :3000
+[2024-05-24T16:53:01.917] [ERROR] application - The "options" argument must be one of type string or object. Received type number (0)
+[2024-05-24T17:07:12.400] [INFO] application - Application listening at :3000
+[2024-05-24T17:07:17.724] [ERROR] application - res is not defined
+[2024-05-24T17:07:28.093] [ERROR] application - res is not defined
+[2024-05-24T17:09:32.217] [INFO] application - Application listening at :3000
+[2024-05-24T17:15:40.127] [INFO] application - Application listening at :3000
+[2024-05-24T17:18:49.302] [INFO] application - Application listening at :3000
+[2024-05-24T17:20:31.815] [INFO] application - Application listening at :3000
+[2024-05-24T17:23:07.371] [INFO] application - Application listening at :3000
+[2024-05-24T17:25:41.522] [INFO] application - Application listening at :3000
+[2024-05-24T17:26:27.315] [INFO] application - Application listening at :3000
+[2024-05-24T17:27:50.719] [INFO] application - Application listening at :3000
+[2024-05-24T17:29:02.571] [INFO] application - Application listening at :3000
+[2024-05-24T17:30:21.215] [INFO] application - Application listening at :3000
+[2024-05-24T17:31:12.309] [INFO] application - Application listening at :3000
+[2024-05-24T17:32:44.085] [INFO] application - Application listening at :3000
+[2024-05-24T17:33:48.892] [INFO] application - Application listening at :3000
+[2024-05-24T17:42:30.214] [INFO] application - Application listening at :3000
+[2024-05-24T17:44:56.706] [INFO] application - Application listening at :3000
+[2024-05-24T17:45:10.496] [ERROR] application - Cannot access 'x' before initialization
+[2024-05-24T17:46:22.220] [INFO] application - Application listening at :3000
+[2024-05-24T17:49:09.408] [INFO] application - Application listening at :3000
+[2024-05-24T17:50:38.161] [INFO] application - Application listening at :3000
+[2024-05-24T17:54:44.172] [INFO] application - Application listening at :3000
+[2024-05-24T17:56:45.870] [INFO] application - Application listening at :3000
+[2024-05-24T17:56:57.803] [ERROR] application - ENOENT: no such file or directory, stat 'C:\Users\uyasp\Desktop\Node.js\Express.js\app\PyVista\Joukowsky-airfoil.stl'
+[2024-05-24T17:58:29.441] [INFO] application - Application listening at :3000
+[2024-05-24T19:52:41.935] [INFO] application - Application listening at :3000
+[2024-05-24T19:54:12.456] [INFO] application - Application listening at :3000

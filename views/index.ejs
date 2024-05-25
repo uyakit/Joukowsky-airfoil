@@ -28,7 +28,7 @@
 				<a href="https://en.wikipedia.org/wiki/Airfoil" target="_blank">#Wikipedia</a>
 			</div>
 			
-			<form action=this id="sim">
+			<form action="/" method="post" id="sim">
 				
 				<table class="table-plotter" rules="groups" style="margin-top: 12px;" cellpadding="10">
 				<tbody>
@@ -75,7 +75,7 @@
 						
 						<td align="center" width="90px">
 							<div class="params">
-								<input type="number" class="params" id="alpha_num" min="-90" max="90" step="0.1" value="2.5" style="text-align:right">
+								<input type="number" class="params" id="alpha_num" name="alpha_num" min="-90" max="90" step="0.1" value="2.5" style="text-align:right">
 							</div>
 						</td>
 					</tr>
@@ -91,7 +91,7 @@
 						
 						<td align="center" width="90px">
 							<div class="params">
-								<input type="number" class="params" id="xi0_num" min="0" max="0.08" step="0.001" value="0.02" style="text-align:right">
+								<input type="number" class="params" id="xi0_num" name="xi0_num" min="0" max="0.08" step="0.001" value="0.02" style="text-align:right">
 							</div>
 						</td>
 					</tr>
@@ -107,7 +107,7 @@
 						
 						<td align="center" width="90px">
 							<div class="params">
-								<input type="number" class="params" id="eta0_num" min="-0.2" max="0.2" step="0.01" value="0.05" style="text-align:right">
+								<input type="number" class="params" id="eta0_num" name="eta0_num" min="-0.2" max="0.2" step="0.01" value="0.05" style="text-align:right">
 							</div>
 						</td>
 					</tr>
@@ -125,7 +125,7 @@
 						
 						<td align="center" width="90px">
 							<div class="params" width="100%">
-								<input type="number" class="params" id="wingl_num" min="0.3" max="1.3" step="0.01" value="1.0" style="text-align:right">
+								<input type="number" class="params" id="wingl_num" name="wingl_num" min="0.3" max="1.3" step="0.01" value="1.0" style="text-align:right">
 							</div>
 						</td>
 					</tr>
@@ -134,13 +134,10 @@
 				</table>
 				<br>
 				<div style="text-align:right" width="100%">
-					<!-- <form action="/" method="post"> -->
-						<!-- https://zenn.dev/wkb/books/node-tutorial/viewer/todo_03 -->
-						
-						<!-- <input type="submit" id="export-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Download .stl & .csv" /> -->
-						<!-- <input type="submit" id="reset-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Reset" /> -->
-					<!-- </form> -->
 					
+					<!-- https://zenn.dev/wkb/books/node-tutorial/viewer/todo_03 -->
+					
+					<!-- <input type="submit" id="export-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Download .stl & .csv" /> -->
 					<input type="button" id="export-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Download .stl & .csv" />
 					<input type="button" id="reset-model" class="btn btn-outline-success my-2 my-sm-0 mr-2" value="Reset" />
 				</div>
@@ -162,14 +159,14 @@
 		//==================================================================
 		function updateModel(form_id, plot_id, width, height)
 		{
-			var forms	= document.getElementById(form_id);
-			var alpha	= parseFloat(forms.alpha_rng.value);
-			var xi0		= parseFloat(forms.xi0_rng.value);
-			var eta0	= parseFloat(forms.eta0_rng.value);
-			var wingl	= parseFloat(forms.wingl_rng.value);
+			let forms	= document.getElementById(form_id);
+			let alpha	= parseFloat(forms.alpha_rng.value);
+			let xi0		= parseFloat(forms.xi0_rng.value);
+			let eta0	= parseFloat(forms.eta0_rng.value);
+			let wingl	= parseFloat(forms.wingl_rng.value);
 			//-------------------------------------------------
-			var c = wingl/4;
-			var r = Math.sqrt( Math.pow(c-xi0, 2) + Math.pow(eta0, 2));
+			let c = wingl/4;
+			let r = Math.sqrt( Math.pow(c-xi0, 2) + Math.pow(eta0, 2));
 			//-------------------------------------------------
 			document.getElementById("Xmin").innerHTML = 'Xmin:	' + round(Xrange_min( alpha, xi0, eta0, wingl, c, r ), 3);
 			document.getElementById("Xmax").innerHTML = 'Xmax:	' + round(Xrange_max( alpha, xi0, eta0, wingl, c, r ), 3);
@@ -189,10 +186,10 @@
 					width, height, 25, 25, 40, 50);
 			gclose();
 			//-------------------------------------------------
-			var x = realX( alpha, xi0, eta0, wingl, c, r, 0);
-			var y = realY_fromX( alpha, xi0, eta0, wingl, c, r, x, 0);
+			let x = realX( alpha, xi0, eta0, wingl, c, r, 0);
+			let y = realY_fromX( alpha, xi0, eta0, wingl, c, r, x, 0);
 			
-			for (var i = 1; i < 360; ++i) {
+			for (let i = 1; i < 360; ++i) {
 				//-------------------------------------------------
 				x = realX( alpha, xi0, eta0, wingl, c, r, i * 1.0);
 				y = realY( alpha, xi0, eta0, wingl, c, r, i * 1.0);
@@ -204,7 +201,29 @@
 			//-------------------------------------------------
 		};
 		//==================================================================
-		function exportModel(form_id, plot_id, width, height)
+		function resetModel(form_id, plot_id, width, height)
+		{
+			let alpha_default =  2.5;
+			let xi0_default = 0.02;
+			let eta0_default = 0.05;
+			let wingl_default = 1.0;
+			
+			document.getElementById('sim').alpha_num.value = alpha_default;
+			document.getElementById('sim').alpha_rng.value = alpha_default;
+			
+			document.getElementById('sim').xi0_num.value = xi0_default;
+			document.getElementById('sim').xi0_rng.value = xi0_default;
+			
+			document.getElementById('sim').eta0_num.value = eta0_default;
+			document.getElementById('sim').eta0_rng.value = eta0_default;
+			
+			document.getElementById('sim').wingl_num.value = wingl_default;
+			document.getElementById('sim').wingl_rng.value = wingl_default;
+			
+			updateModel(form_id, plot_id, width, height);
+		};
+		//==================================================================
+		function saveModel(form_id, plot_id, width, height)
 		{
 			var forms	= document.getElementById(form_id);
 			var alpha	= parseFloat(forms.alpha_rng.value);
@@ -288,28 +307,6 @@
 			updateModel(form_id, plot_id, width, height);
 		};
 		//==================================================================
-		function resetModel(form_id, plot_id, width, height)
-		{
-			let alpha_default =  2.5;
-			let xi0_default = 0.02;
-			let eta0_default = 0.05;
-			let wingl_default = 1.0;
-			
-			document.getElementById('sim').alpha_num.value = alpha_default;
-			document.getElementById('sim').alpha_rng.value = alpha_default;
-			
-			document.getElementById('sim').xi0_num.value = xi0_default;
-			document.getElementById('sim').xi0_rng.value = xi0_default;
-			
-			document.getElementById('sim').eta0_num.value = eta0_default;
-			document.getElementById('sim').eta0_rng.value = eta0_default;
-			
-			document.getElementById('sim').wingl_num.value = wingl_default;
-			document.getElementById('sim').wingl_rng.value = wingl_default;
-			
-			updateModel(form_id, plot_id, width, height);
-		};
-		//==================================================================
 		// ------------------------------------------------------
 		//Hamburger menu
 		const mobileMenu = document.getElementById("mobile-menu");
@@ -321,25 +318,24 @@
 		});
 		// ------------------------------------------------------
 		function updateRangeStyles (objRng, objNum, isOn=false) {
-			var color_thumb_on = 'rgba(124, 252, 0, .95)';
-			var color_thumb_off = 'rgba(72, 61, 139, .95)';
-			var color_thumb_shadow_on = 'rgba(0, 0, 255, .1)';
-			var color_thumb_shadow_off = 'none';
-			var color_num_on = 'rgba(50, 205, 50, .95)';
-			var color_num_off = 'rgba(128, 128, 128, .95)';
-			var size_num_on = '15px';
-			var size_num_off = '14px';
+			let color_thumb_on = 'rgba(124, 252, 0, .95)';
+			let color_thumb_off = 'rgba(72, 61, 139, .95)';
+			let color_thumb_shadow_on = 'rgba(0, 0, 255, .1)';
+			let color_thumb_shadow_off = 'none';
+			let color_num_on = 'rgba(50, 205, 50, .95)';
+			let color_num_off = 'rgba(128, 128, 128, .95)';
+			let size_num_on = '15px';
+			let size_num_off = '14px';
+			let color_thumb = color_thumb_off;
+			let color_thumb_shadow = color_thumb_shadow_off;
+			let color_num = color_num_off;
+			let size_num = size_num_off;
 			
 			if (isOn) {
-				var color_thumb = color_thumb_on;
-				var color_thumb_shadow = color_thumb_shadow_on;
-				var color_num = color_num_on;
-				var size_num = size_num_on;
-			} else {
-				var color_thumb = color_thumb_off;
-				var color_thumb_shadow = color_thumb_shadow_off;
-				var color_num = color_num_off;
-				var size_num = size_num_off;
+				color_thumb = color_thumb_on;
+				color_thumb_shadow = color_thumb_shadow_on;
+				color_num = color_num_on;
+				size_num = size_num_on;
 			}
 			
 			objRng.style.setProperty('--color-range-thumb-background', color_thumb);
@@ -532,34 +528,13 @@
 		// ------------------------------------------------------
 		let btn_dlStl = document.getElementById('export-model');
 		btn_dlStl.addEventListener('click', () => {
-			exportModel('sim', 'simulate', 400, 300);
+			saveModel('sim', 'simulate', 400, 300);
 		});
 		// ------------------------------------------------------
 		let btn_reset = document.getElementById('reset-model');
 		btn_reset.addEventListener('click', () => {
 			resetModel('sim', 'simulate', 400, 300);
 		});
-		// ------------------------------------------------------
-		// ------------------------------------------------------
-		// Save .stl
-		
-		// https://zenn.dev/daiyaone/articles/5da30a5b248351#:~:text=console.log(data)%3B%0A%7D)%3B-,%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%A8%E5%89%8A%E9%99%A4,-fs%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%92
-		<%-
-		fs.writeFile('./app/PyVista/Joukowsky-airfoil.txt', 'Joukowsky-airfoil.stl !', (err) => {
-			if (err) {
-				console.error(err);
-				return;
-			}
-			//console.log(" ## './app/PyVista/Joukowsky-airfoil.stl' saved.");
-		});
-		%>
-		// ------------------------------------------------------
-		// .stl -> .html
-		//
-		// https://t-salad.com/node-exe/
-		//<%-
-		//subproc.execSync('py ./app/PyVista/stl2html.py  ./Joukowsky-airfoil.stl');
-		//%>
 		// ------------------------------------------------------
 	</script>
 	<script src="./app/Joukowsky-airfoil.js" type="text/javascript"></script>

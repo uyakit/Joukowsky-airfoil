@@ -1,0 +1,40 @@
+[2024-05-22T08:31:41.276] [INFO] application - Application listening at :3000
+[2024-05-22T08:37:24.907] [INFO] application - Application listening at :3000
+[2024-05-22T08:41:03.392] [INFO] application - Application listening at :3000
+[2024-05-22T08:42:34.714] [INFO] application - Application listening at :3000
+[2024-05-22T08:46:39.924] [INFO] application - Application listening at :3000
+[2024-05-22T08:48:33.743] [INFO] application - Application listening at :3000
+[2024-05-22T08:57:07.563] [INFO] application - Application listening at :3000
+[2024-05-22T08:59:48.629] [INFO] application - Application listening at :3000
+[2024-05-22T09:01:42.814] [INFO] application - Application listening at :3000
+[2024-05-22T09:03:50.628] [INFO] application - Application listening at :3000
+[2024-05-22T09:04:01.455] [ERROR] application - missing ) after argument list in C:\Users\uyasp\Desktop\Node.js\Express.js\Joukowsky-airfoil\views\index.ejs while compiling ejs
+
+If the above error is not helpful, you may want to try EJS-Lint:
+https://github.com/RyanZim/EJS-Lint
+Or, if you meant to create an async function, pass `async: true` as an option.
+[2024-05-22T09:04:03.735] [ERROR] application - missing ) after argument list in C:\Users\uyasp\Desktop\Node.js\Express.js\Joukowsky-airfoil\views\index.ejs while compiling ejs
+
+If the above error is not helpful, you may want to try EJS-Lint:
+https://github.com/RyanZim/EJS-Lint
+Or, if you meant to create an async function, pass `async: true` as an option.
+[2024-05-22T09:05:28.547] [INFO] application - Application listening at :3000
+[2024-05-22T09:11:25.244] [INFO] application - Application listening at :3000
+[2024-05-22T09:15:24.245] [INFO] application - Application listening at :3000
+[2024-05-22T09:20:52.999] [INFO] application - Application listening at :3000
+[2024-05-22T10:10:39.074] [INFO] application - Application listening at :3000
+[2024-05-22T10:12:39.670] [INFO] application - Application listening at :3000
+[2024-05-22T10:15:11.883] [INFO] application - Application listening at :3000
+[2024-05-22T10:16:34.795] [INFO] application - Application listening at :3000
+[2024-05-22T13:13:13.631] [INFO] application - Application listening at :3000
+[2024-05-22T13:16:17.940] [INFO] application - Application listening at :3000
+[2024-05-22T13:19:19.096] [INFO] application - Application listening at :3000
+[2024-05-22T13:25:06.585] [INFO] application - Application listening at :3000
+[2024-05-22T13:28:17.127] [INFO] application - Application listening at :3000
+[2024-05-22T13:29:14.717] [INFO] application - Application listening at :3000
+[2024-05-22T13:30:17.623] [INFO] application - Application listening at :3000
+[2024-05-22T13:31:16.388] [INFO] application - Application listening at :3000
+[2024-05-22T14:20:16.493] [INFO] application - Application listening at :3000
+[2024-05-22T14:23:02.397] [INFO] application - Application listening at :3000
+[2024-05-22T16:05:07.302] [INFO] application - Application listening at :3000
+[2024-05-22T16:06:49.761] [INFO] application - Application listening at :3000

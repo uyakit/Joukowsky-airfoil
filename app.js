@@ -14,6 +14,8 @@ const express = require("express");
 const app = express();
 
 
+// https://www.tohoho-web.com/ex/express.html#post-parameters
+app.use(express.urlencoded({ extended: true }));
 
 // Static resources routing.
 app.use("/public", express.static(path.join(__dirname, "/public")));
