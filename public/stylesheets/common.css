@@ -137,6 +137,11 @@ input[type="number"] {
   color: rgba(245, 245, 245, .95); /* リンク色 */
 }
 
+.nav-list a:hover {
+  text-decoration: none; /* アンダーラインなし */
+  color: rgba(97, 250, 240, .95); /* リンク色 */
+}
+
 /* モバイルメニュー用スタイル */
 .menu-toggle {
   display: none; /* デフォルトでは非表示 */
@@ -196,3 +201,4 @@ input[type="number"] {
     transform: rotate(45deg) translate(-5px, -7px);
   }
 }
+/* ------------------------------------------------------------------- */
